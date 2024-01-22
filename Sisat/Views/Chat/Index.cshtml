@@ -1,0 +1,341 @@
+﻿@* @model ChatViewModel
+
+{
+    var listChat = Model.ListaChats();
+    var listView = Model.ListaIds();
+   
+}
+
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <div class="ml-auto p-2 bd-highlight botao-alinhado">
+                        <div class="row" style="display:block">
+                            <button type="button" class="btn btn-secondary text-white" data-toggle="modal" data-target="#projectModal">Finalizar Atendimento</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-lg-12">
+                                <div class="card chat-app" style="width:100%">
+                                    @if (Model.Usuario.IdNivAcesso == 1)
+                                    {
+                                        <div id="plist" class="people-list">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Search...">
+                                            </div>
+                                            <ul class="list-unstyled chat-list mt-2 mb-0">
+                                                @foreach (var chat in listChat)
+                                                {
+
+                                                <li class="clearfix">
+                                                        <a asp-controller="Chat" asp-action="Index" asp-route-IdUsuario="chat.Chats.IdDestinatario">
+                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                                        <div class="about">
+                                                            <div class="name">@chat.Chats.IdRemetenteNavigation.Nome</div>
+                                                            <div class="status"> <i class="fa fa-circle offline"></i> chat.Chats.DataEnvio </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    }
+                                    <div class="chat">
+                                            <div class="chat-header clearfix">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                                        </a>
+                                                        <div class="chat-about">
+                                                            <h6 class="m-b-0">listView.Select(n => n.IdSelecionado.IdDestinatarioNavigation.Nome).FirstOrDefault()</h6>
+                                                            <small></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <div class="chat-history">
+                                            <ul class="m-b-0">
+                                                @if (Model.Chat.RemetenteTipo == Model.Chat.IdRemetente)
+                                                {
+                                                    @foreach (var chat in Model.Chats)
+                                                    {
+                                                        if (chat.IdRemetente == Model.Usuario.Id)
+                                                        {
+                                                            <li class="clearfix">
+                                                                <div class="message-data text-right">
+                                                                    <input hidden type="datetime" value="chat.DataEnvio" />
+                                                                    <span class="message-data-time">chat.DataEnvio</span>
+                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                                                </div>
+                                                                <div class="message other-message float-right"> chat.Mensagem </div>
+                                                            </li>
+                                                        }
+                                                   
+                                                        else
+                                                       {
+                                                        <li class="clearfix">
+                                                            <div class="message-data">       
+                                                        <span class="message-data-time">chat.DataEnvio</span>
+                                                            </div>
+                                                            <div class="message my-message">chat.Mensagem</div>
+                                                        </li>
+
+                                                        }
+                                                    }
+                                                }
+                                            </ul>   <ul class="m-b-0">
+                                                @if(Model.Chat.RemetenteTipo == Model.Chat.IdDestinatario)
+                                                {
+                                                    @foreach (var chat in Model.Chats)
+                                                    {
+                                                        if (chat.IdRemetente == Model.Usuario.Id)
+                                                        {
+                                                            @* Remetente *@
+                                                           @*  <li class="clearfix">
+                                                                <div class="message-data text-right">
+                                                                    <input hidden type="datetime" value="chat.DataEnvio" />
+                                                                   <span class="message-data-time">chat.DataEnvio</span>
+                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                                                </div>
+                                                                <div class="message other-message float-right"> chat.Mensagem  </div>
+                                                            </li>
+                                                        }
+                                                   
+                                                        else
+                                                        {    @* Destinatário *@
+                                                      @*   <li class="clearfix">
+                                                            <div class="message-data">       
+                                                        <span class="message-data-time">chat.DataEnvio</span>
+                                                            </div>
+                                                            <div class="message my-message">chat.Mensagem</div>
+                                                        </li> *@
+
+                                                   @*  }
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                        </div> *@
+
+                                        @* <div class="chat-message clearfix">
+                                            <form id="chatForm" asp-controller="Chat" asp-action="EnviaMensagem" method="post">
+                                                
+                                                <div class="input-group mb-0">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" onclick="submitForm()"><i class="fa-regular fa-paper-plane"></i></span>
+                                                    </div>
+                                                <input hidden asp-for="Chat.IdDestinatario" value="IdUsuario" />
+                                                        <input hidden asp-for="Chat.IdRemetente" />
+                                                        <input hidden type="datetime" asp-for="Chat.DataEnvio" />
+                                                <input type="text" name="textoMensagem"  class="form-control" placeholder="Descreva sua dúvida" onkeydown="handleKeyPress(event)">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary" style="display: none;">Enviar</button>
+                                            </form>
+                                        </div> *@
+@* 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  *@
+
+@model ChatViewModel
+
+@{
+    var listChat = Model.ListaChats();
+    var listView = Model.ListaIds();
+   
+}
+
+
+<div class="content-wrapper">
+
+    <div class="content-header" style="margin-left:1%;">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                    <div class="row" style="display:block">
+                        <button type="button" class="btn btn-secondary text-white" data-toggle="modal" data-target="#projectCriarForum">Iniciar Novo Fórum</button>
+                    </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card nav-link">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    @foreach(var chat in listChat)
+                                    {
+                                        if (chat.Chats.IdRemetente == Model.Usuario.Id)
+                                        {
+                                            <div class="card bg-light mb-3" style="max-width: 98rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"></h5>
+                                                    <p class="card-text">
+                                                        <div class="media forum-item">
+                                                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                                            <div class="media-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-2 border-right">
+                                                                        <h3 class="text-secondary">
+                                                                            @chat.Chats.Titulo
+                                                                        </h3>
+                                                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">@chat.Chats.IdRemetenteNavigation.Nome</a></h6>
+                                                                      
+                                                                        <div class="text-muted small text-center align-self-center d:inline" style="padding-top:50px; margin-left:auto;">
+                                                                            <span class="message-data-time text-sm-left mr-3" style="">@chat.Chats.DataEnvio</span>
+                                                                            <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-10">
+                                                                        <h5>
+                                                                            @chat.Chats.Mensagem
+                                                                        </h5>
+                                                                        <br />
+                                                                        <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold" >Comentar</a>
+                                                                    </div>
+                                                                   
+                                                                </div>   
+                                                            </div>
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="card bg-light mb-3" style="max-width: 98rem">
+                                                <div class="card-body" style="background:#D3DEDC">
+                                                    <h5 class="card-title"></h5>
+                                                    <p class="card-text">
+                                                        <div class="media forum-item">
+                                                            
+                                                            <div class="media-body">
+                                                                <div class="row">
+
+
+                                                                    <div class="col-md-10">
+                                                                        <h5>
+                                                                            @chat.Chats.Resposta
+                                                                        </h5>
+                                                                        <br />
+                                                                        <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold" onkeydown="handleKeyPress(event)">Comentar</a>
+                                                                    </div>
+
+
+                                                                   
+                                                                    <div class="col-md-2 border-left">
+                                                                      
+                                                                        <div class="text-secondary">
+                                                                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                                                        </div>
+                                                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">@chat.Chats.IdRemetenteNavigation.Nome</a></h6>
+                                                                        
+                                                                        <div class="text-muted small text-center align-self-center d:inline" style="padding-top:50px; margin-left:auto;">
+                                                                            <span class="message-data-time text-sm-left mr-3" style="">@chat.Chats.DataEnvio</span>
+                                                                            <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                  
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="../Shared/PartialViews/_ModalCreateForum.cshtml" model="@Model" />
+<partial name="../Shared/PartialViews/_ModalComentarForum.cshtml" model="@Model" />
+
+
+
+ <script>
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            submitForm();
+        }
+    }
+
+    function submitForm() {
+        document.getElementById('chatForm').submit();
+    }
+</script>
+
+ 
+
+<script>
+    document.getElementById('meuLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/Controller/NomeDoMetodo',
+            type: 'POST', 
+            data: {  },
+            success: function (result) {
+            },
+            error: function (error) {
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
