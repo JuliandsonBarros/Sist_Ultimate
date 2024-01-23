@@ -42,6 +42,7 @@ namespace Sisat.ViewModels
             {
                 var listaMensagens = _context.Chat
                     .Include(c => c.IdRemetenteNavigation)
+                    .ThenInclude(c => c.Conveniados)
                     .Where(c => c.IdDestinatario == 1 || c.IdRemetente == 2)
                     .GroupBy(c => c.IdRemetente)
                     .Select(grupo => new RetornaChats
@@ -73,28 +74,6 @@ namespace Sisat.ViewModels
             }
           
         }
-
-
-        //public List<RetornaChats> ListaChats()
-        //{
-        //    using (var _context = new SisatContext())
-        //    {
-
-        //  var listaMensagens = _context.Chat
-        //   .OrderByDescending(c => c.DataEnvio)
-        //   .Select(cha => new RetornaChats
-        //   {
-        //       Chats = cha,
-        //       RetornaChat = _context.Chat
-        //           .Where(c => (c.IdDestinatario == 1 || c.IdRemetente == 2) && c.IdMensagem != cha.IdMensagem)
-        //           .OrderByDescending(c => c.DataEnvio)
-        //           .FirstOrDefault()
-        //   })
-        //   .ToList();
-
-        //        return listaMensagens;
-        //    }
-        //}
 
         public void Logout(HttpContext httpContext)
         {

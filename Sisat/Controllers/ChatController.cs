@@ -25,8 +25,7 @@ namespace Sisat.Controllers
         {
 
             _chatViewModel.Chats = _context.Chat
-                  .Where(c => (c.IdRemetente == _chatViewModel.Usuario.Id || c.IdDestinatario == _chatViewModel.Usuario.Id) ||
-                        (c.IdDestinatario == _chatViewModel.Usuario.Id || c.IdRemetente == _chatViewModel.Usuario.Id))
+                  .Where(c => c.IdRemetente == _chatViewModel.Usuario.Id) 
                   .OrderBy(c => c.DataEnvio)
                   .ToList();
 

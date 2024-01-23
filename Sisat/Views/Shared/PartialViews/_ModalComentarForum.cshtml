@@ -1,4 +1,6 @@
-﻿<div class="modal fade" id="projectComentarForum" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
+﻿@model ChatViewModel
+
+<div class="modal fade" id="projectComentarForum" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,8 +12,12 @@
 
 
             <div class="modal-body">
-                <!-- Formulário para cadastro/alteração -->
-                <form asp-controller="Chat" asp-action="EnviarMensagem" method="post" enctype="multipart/form-data">
+                <form asp-controller="Chat" asp-action="EnviaMensagem" method="post">
+
+                    <input hidden asp-for="Chat.IdDestinatario" value="IdUsuario" />
+                    <input hidden asp-for="Chat.IdRemetente" />
+                    <input hidden type="datetime" asp-for="Chat.DataEnvio" />
+
                     <label>Descreva seu Comentário: </label>
                     <div class="form-group">
                         <label class="control-label"></label>
