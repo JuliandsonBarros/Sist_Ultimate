@@ -37,7 +37,6 @@ namespace Sisat.ViewModels
 
         public List<RetornaChats> ListaChats()
         {
-
             using (var _context = new SisatContext())
             {
                 var listaMensagens = _context.Chat
@@ -103,7 +102,5 @@ namespace Sisat.ViewModels
 
         public PacotesAtualizacoes RetornoPacote { get; set; }
         public PacotesAtualizacoes HomeUltimoPacote { get; set; }
-
-
     }
 }

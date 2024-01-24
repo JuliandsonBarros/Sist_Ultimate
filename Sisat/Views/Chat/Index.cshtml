@@ -20,110 +20,115 @@
             </div>
         </div>
     </div>
-
+    
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+                    @foreach (var chat in listChat)
+                    {
                     <div class="card nav-link">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @* @if(Model.Chat.RemetenteTipo == Model.Chat.IdDestinatario || Model.Chat.RemetenteTipo == Model.Chat.IdRemetente)
-                                        { *@
-                                            @foreach (var chat in listChat)
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                       @*  @if(Model.Chat.RemetenteTipo == Model.Chat.IdDestinatario || Model.Chat.RemetenteTipo == Model.Chat.IdRemetente)
                                             {
-                                                @* Remetente *@
-                                                <div class="card bg-light mb-3" style="max-width: 98rem;">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title"></h5>
-                                                        <p class="card-text">
-                                                            <div class="media forum-item">
-                                                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                                                <div class="media-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-2 border-right">
+                                               *@
+                                        @if (!string.IsNullOrEmpty(chat.Chats.Mensagem))
+                                        {
+                                            @* Remetente *@
+                                            <div class="card bg-light mb-3" style="max-width: 98rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"></h5>
+                                                    <p class="card-text">
+                                                        <div class="media forum-item">
+                                                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                                            <div class="media-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-2 border-right">
 
-                                                                            <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">@chat.Chats.IdRemetenteNavigation.Nome</a></h6>
-                                                                            @*  <p>@chat.Chats.IdRemetenteNavigation.Conveniados.Select(n => n.NomConveniado).FirstOrDefault()</p> *@
-                                                                            <p>@chat.Chats.IdRemetenteNavigation.Conveniados.Select(n => n.NomConveniado).FirstOrDefault()</p>
+                                                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">@chat.Chats.IdRemetenteNavigation.Nome</a></h6>
+                                                                        @*  <p>@chat.Chats.IdRemetenteNavigation.Conveniados.Select(n => n.NomConveniado).FirstOrDefault()</p> *@
+                                                                        <p>@chat.Chats.IdRemetenteNavigation.Conveniados.Select(n => n.NomConveniado).FirstOrDefault()</p>
 
-                                                                            <div class="text-muted small text-center align-self-center d:inline" style="padding-top:200px; margin-left:10PX;">
-                                                                                <span class="message-data-time text-sm-left mr-3" style="">@chat.Chats.DataEnvio</span>
-                                                                                <span><i class="far fa-comment ml-2"></i> 3</span>
-                                                                            </div>
+                                                                        <div class="text-muted small text-center align-self-center d:inline" style="padding-top:200px; margin-left:10PX;">
+                                                                            <span class="message-data-time text-sm-left mr-3" style="">@chat.Chats.DataEnvio</span>
+                                                                            <span><i class="far fa-comment ml-2"></i> 3</span>
                                                                         </div>
-                                                                        <div class="col-md-10">
-                                                                            <h3 class="text-secondary">
-                                                                                @chat.Chats.Titulo
-                                                                            </h3>
-                                                                            <h5>
-                                                                                @chat.Chats.Mensagem
-                                                                            </h5>
-                                                                            <br />
-                                                                            <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold">Comentar</a>
-                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-10">
+                                                                        <h3 class="text-secondary">
+                                                                            @chat.Chats.Titulo
+                                                                        </h3>
+                                                                        <h5>
+                                                                            @chat.Chats.Mensagem
+                                                                        </h5>
+                                                                        <br />
+                                                                        <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold">Comentar</a>
+                                                                    </div>
 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                            }
+                                        @if (string.IsNullOrEmpty(chat.Chats.Mensagem))
+                                        {
+                                            @* Destinatário *@
+                                            <div class="card bg-light mb-3" style="max-width: 98rem">
+                                                <div class="card-body" style="background:#D3DEDC">
+                                                    <h5 class="card-title"></h5>
+                                                    <p class="card-text">
+                                                        <div class="media forum-item">
+
+                                                            <div class="media-body">
+                                                                <div class="row">
+
+
+                                                                    <div class="col-md-10">
+                                                                        <h5>
+                                                                            @chat.Chats.Resposta
+                                                                        </h5>
+                                                                        <br />
+                                                                        <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold">Comentar</a>
+                                                                    </div>
+
+
+
+                                                                    <div class="col-md-2 border-left">
+
+                                                                        <div class="text-secondary">
+                                                                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                                                        </div>
+                                                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">@chat.Chats.IdRemetenteNavigation.Nome</a></h6>
+                                                                        <p>@chat.Chats.IdRemetenteNavigation.Conveniados.Select(n => n.NomConveniado).FirstOrDefault()</p>
+                                                                        <div class="text-muted small text-center align-self-center d:inline" style="padding-top:50px; margin-left:auto;">
+                                                                            <span class="message-data-time text-sm-left mr-3" style="">@chat.Chats.DataEnvio</span>
+                                                                            <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                        
-                                            @* Destinatário *@
-                                                        <div class="card bg-light mb-3" style="max-width: 98rem">
-                                                            <div class="card-body" style="background:#D3DEDC">
-                                                                <h5 class="card-title"></h5>
-                                                                <p class="card-text">
-                                                                    <div class="media forum-item">
-
-                                                                        <div class="media-body">
-                                                                            <div class="row">
-
-
-                                                                                <div class="col-md-10">
-                                                                                    <h5>
-                                                                                @chat.Chats.Resposta
-                                                                                    </h5>
-                                                                                    <br />
-                                                                                    <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold">Comentar</a>
-                                                                                </div>
-
-
-
-                                                                                <div class="col-md-2 border-left">
-
-                                                                                    <div class="text-secondary">
-                                                                                        <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                                                                    </div>
-                                                                            <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">@chat.Chats.IdRemetenteNavigation.Nome</a></h6>
-                                                                            <p>@chat.Chats.IdRemetenteNavigation.Conveniados.Select(n => n.NomConveniado).FirstOrDefault()</p>
-                                                                                    <div class="text-muted small text-center align-self-center d:inline" style="padding-top:50px; margin-left:auto;">
-                                                                                <span class="message-data-time text-sm-left mr-3" style="">@chat.Chats.DataEnvio</span>
-                                                                                        <span><i class="far fa-comment ml-2"></i> 3</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </p>
-                                                            </div>
                                                         </div>
-
-                                            }
-                                       @*  } *@
-                                </div> 
-                            </div>
-                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div> 
+                              </div>
+                           </div>
                     </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+ 
 
 
 

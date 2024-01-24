@@ -67,4 +67,10 @@
     <None Include="wwwroot\assets\fontawesome\webfonts\fa-solid-900.woff2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\arquivos\" />
+    <Folder Include="wwwroot\arquivos\1\" />
+    <Folder Include="wwwroot\arquivos\2\" />
+  </ItemGroup>
+
 </Project>
