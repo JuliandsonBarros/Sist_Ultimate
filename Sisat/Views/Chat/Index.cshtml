@@ -75,10 +75,11 @@
 
                                             </div>
                                             }
-                                        @if (string.IsNullOrEmpty(chat.Chats.Mensagem))
+                                        @if(string.IsNullOrEmpty(chat.Chats.Mensagem))
+                                       
                                         {
                                             @* Destinatário *@
-                                            <div class="card bg-light mb-3" style="max-width: 98rem">
+                                            <div class="card bg-light mb-3" style="max-width: 98rem;max-height:14rem;">
                                                 <div class="card-body" style="background:#D3DEDC">
                                                     <h5 class="card-title"></h5>
                                                     <p class="card-text">
@@ -93,7 +94,8 @@
                                                                             @chat.Chats.Resposta
                                                                         </h5>
                                                                         <br />
-                                                                        <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold">Comentar</a>
+                                                                        <br />
+                                                                        <a class="text-muted" data-toggle="modal" data-target="#projectComentarForum" style="font-weight: bold; margin-bottom:0;">Comentar</a>
                                                                     </div>
 
 

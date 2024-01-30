@@ -25,25 +25,11 @@ namespace Sisat.Controllers
         {
 
             _chatViewModel.Chats = _context.Chat
-                  .Where(c => c.IdRemetente == _chatViewModel.Usuario.Id) 
                   .OrderBy(c => c.DataEnvio)
                   .ToList();
 
             return View(_chatViewModel);
         }
-
-
-        //// GET: Chat/Conversation/{userId}
-        //public IActionResult AdminChat(int IdUsuario)
-        //{
-        //    _chatViewModel.Chats = _context.Chat
-        //        .Where(c => (c.IdRemetente == _chatViewModel.Usuario.Id && c.IdDestinatario == IdUsuario) ||
-        //                    (c.IdDestinatario == IdUsuario && c.IdRemetente ==  _chatViewModel.Usuario.Id))
-        //        .OrderBy(c => c.DataEnvio)
-        //        .ToList();
-
-        //    return View(_chatViewModel);
-        //}
 
         [HttpPost]
         public async Task<IActionResult> EnviaMensagem(int IdUsuario, string titulo, string textoMensagem, string resposta)
